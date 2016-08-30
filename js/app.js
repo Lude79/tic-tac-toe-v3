@@ -107,7 +107,6 @@ $(document).on("click",".box", function(){
     $(document).off("click",".box");
     $("#player1").removeClass("active");
     $("#player2").addClass("active");
-    //Game.fields[($(this).attr("id").slice(0,1))][($(this).attr("id").slice(1,2))] = "o"; //2D array solution
     setPlayer1.push($(this).attr("id"));
     turn += 1;
     victoryCheck1();
@@ -166,13 +165,14 @@ $(document).on("click",".box", function(){
 
 //function that checks for victory conditions
 var vc = [["11","12","13"],["21","22","23"],["31","32","33"],["11","21","31"],["12","22","32"],["13","23","33"],["11","22","33"],["31","22","13"]];
-function victoryCheck1(){
+    
+function victoryCheck1(){//check if player one wins
 for (var i = 0;i<8;i++){
 var isSuperset = vc[i].every(function (val) { return setPlayer1.indexOf(val) >= 0; });    
 if(isSuperset){victory = isSuperset;}    
 }}
 
-function victoryCheck2(){
+function victoryCheck2(){//check if player two wins
 for (var i = 0;i<8;i++){
 var isSuperset = vc[i].every(function (val) { return setPlayer2.indexOf(val) >= 0; });    
 if(isSuperset){victory = isSuperset;}    
