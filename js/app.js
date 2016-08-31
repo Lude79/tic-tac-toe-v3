@@ -14,9 +14,9 @@ var opening = '<div class="screen screen-start" id="start">\
   <header>\
     <h1>Tic Tac Toe</h1>\
     <form>\
-  <input type="text" name="pname1" id="pName" placeholder="Enter Player O">\
-<input type="text" name="pname2" id="pName2" placeholder="Enter Player X">\
-</form>\
+        <input type="text" name="pname1" id="pName" placeholder="Enter Player O">\
+        <input type="text" name="pname2" id="pName2" placeholder="Enter Player X">\
+    </form>\
     <a href="#" class="button">Start game</a>\
   </header>\
 </div>';
@@ -163,6 +163,9 @@ $(document).on("click",".box", function(){
     if(victory===true){
         $(".board").css("display","none");
         playerWin = 'screen-win-two';
+var playerNameWin = playerName2 + " Wins!";
+$("head").append('<style>.screen-win-two p:before {content: "' + playerNameWin + '"}</style>');
+        
         injectWinner()}else if(turn === 9)
         {
         $(".board").css("display","none");         

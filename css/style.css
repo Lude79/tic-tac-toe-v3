@@ -184,13 +184,13 @@ input{
         
 }
 
-#player1:before,
-#player2:before {
+#player1::before,
+#player2::before {
      z-index: 100;
-    position: absolute;
     color: black;
     font-size: 2em;
-    margin-left: -14px;
+    position: fixed;
+
 }
 
 /* CSS for the tie page */
@@ -212,7 +212,11 @@ input{
         color: #54D17A;
         }
 
+
+
+
+/*
 li #player2 {
     
     text-align: center;
-}
+}*/
