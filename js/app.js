@@ -1,11 +1,12 @@
 var ticTacToe = function(){
 
 //set variables    
-var setPlayer1 = [];
-var setPlayer2 = [];
+var setPlayer1 = []; //array of stones placed by player 1
+var setPlayer2 = []; //array of stones placed by player 2
 var victory = false;
 var playerWin = "";
 var playerName = "";
+var playerName2 = "";    
 var turn = 0;
 
 //inject start page into html
@@ -13,7 +14,8 @@ var opening = '<div class="screen screen-start" id="start">\
   <header>\
     <h1>Tic Tac Toe</h1>\
     <form>\
-  <input type="text" name="fname" id="pName" placeholder="Player name">\
+  <input type="text" name="pname1" id="pName" placeholder="Enter Player O">\
+<input type="text" name="pname2" id="pName2" placeholder="Enter Player X">\
 </form>\
     <a href="#" class="button">Start game</a>\
   </header>\
@@ -53,10 +55,16 @@ $(opening).insertAfter(".board");
 //on button click hide start page and show board/OR restart game after previous one has ended
 $(document).on("click",".button", function(){
      
-    if($("#pName").val() !== undefined){
+    if($("#pName").val() !== undefined){ //append name of Player O to box on top left
         playerName = $("#pName").val();
         $("head").append('<style>#player1::before {content: "' + playerName + '"}</style>');
-    }
+    };
+    
+    if($("#pName2").val() !== undefined){ //append name of Player X to box on top right
+        playerName2 = $("#pName2").val();
+        $("head").append('<style>#player2::before {content: "' + playerName2 + '"}</style>');
+    };
+    
     $("#start").remove();
     $(".screen-win-one").remove();
     $(".screen-win-two").remove();
@@ -89,7 +97,7 @@ var player1 = function(){
 if ($("#player1").hasClass("active")){
 $(document).on("mouseover",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
-    $(this).css('background-image', 'url(../img/o.svg)');
+    $(this).css('background-image', 'url(img/o.svg)');
     }});
 
 $(document).on("mouseout",".box", function(){
@@ -132,7 +140,7 @@ var player2 = function(){
 if ($("#player2").hasClass("active")){
 $(document).on("mouseover",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
-    $(this).css('background-image', 'url(../img/x.svg)');
+    $(this).css('background-image', 'url(img/x.svg)');
     }});
 
 $(document).on("mouseout",".box", function(){
