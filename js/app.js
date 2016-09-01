@@ -4,53 +4,36 @@ var ticTacToe = function(){
 var setPlayer1 = []; //array of stones placed by player 1
 var setPlayer2 = []; //array of stones placed by player 2
 var victory = false;
-var playerWin = "";
-var playerName = "";
-var playerName2 = "";    
+var playerWin, playerName, playerName2;    
 var turn = 0;
 
 //inject start page into html
-var opening = '<div class="screen screen-start" id="start">\
-  <header>\
-    <h1>Tic Tac Toe</h1>\
-    <form>\
-        <input type="text" name="pname1" id="pName" placeholder="Enter Player O">\
-        <input type="text" name="pname2" id="pName2" placeholder="Enter Player X">\
-    </form>\
-    <a href="#" class="button">Start game</a>\
-  </header>\
-</div>';
+var opening = '<div class="screen screen-start" id="start">';
+opening +=  '<header> <h1>Tic Tac Toe</h1> <form>';
+opening +=  '<input type="text" name="pname1" id="pName" placeholder="Enter Player O">';
+opening +=  '<input type="text" name="pname2" id="pName2" placeholder="Enter Player X">';
+opening +=  '</form> <a href="#" class="button">Start game</a> </header> </div>';
 
 //inject winner page into HTML
 function injectWinner(){
-var winner = '<div class="screen" id="finish">\
-  <header>\
-    <h1>Tic Tac Toe</h1>\
-    <p class="message"></p>\
-    <a href="#" class="button">New game</a>\
-  </header>\
-</div>';
+var winner = '<div class="screen" id="finish">';
+winner +=  '<header> <h1>Tic Tac Toe</h1> <p class="message"></p> <a href="#" class="button">New game</a> </header></div>';
 $(winner).insertAfter(".board");
-$(".screen").addClass(playerWin);    
-};
+$(".screen").addClass(playerWin);
+}
 
 //inject tie page into HTML
 function injectTie(){
-var tie = '<div class="screen screen-tie" id="tie">\
-  <header>\
-    <h1>Tic Tac Toe</h1>\
-    <p class="message"></p>\
-    <a href="#" class="button">Start game</a>\
-  </header>\
-</div>';
+var tie = '<div class="screen screen-tie" id="tie">';
+tie +=  '<header><h1>Tic Tac Toe</h1><p class="message"></p><a href="#" class="button">Start game</a></header></div>';
 $(tie).insertAfter(".board");
-};
+}
 
 //show start page and hide board
 window.onload=function(){
 $(".board").css("display","none");
 $(opening).insertAfter(".board");
-};
+}
 
 //on button click hide start page and show board/OR restart game after previous one has ended
 $(document).on("click",".button", function(){
@@ -127,12 +110,12 @@ $("head").append('<style>.screen-win-one p:before {content: "' + playerNameWin +
 injectWinner();}
         else if(turn === 9)
         {
-        $(".board").css("display","none");         
+        $(".board").css("display","none");
         injectTie();}
         else {player2()};
-}});   
+}});  
 }
- 
+
 //Player Two gameplay function
 var player2 = function(){
 
@@ -171,7 +154,7 @@ $("head").append('<style>.screen-win-two p:before {content: "' + playerNameWin +
         $(".board").css("display","none");         
         injectTie();}
         else {player1()};
-}});   
+}});
 }
 
 //function that checks for victory conditions
