@@ -1,10 +1,12 @@
+"use strict";
+
 var ticTacToe = function(){
 
-//set variables    
+//set variables
 var setPlayer1 = []; //array of stones placed by player 1
 var setPlayer2 = []; //array of stones placed by player 2
 var victory = false;
-var playerWin, playerName, playerName2;    
+var playerWin, playerName, playerName2;
 var turn = 0;
 
 //inject start page into html
@@ -31,39 +33,39 @@ $(tie).insertAfter(".board");
 
 //show start page and hide board
 window.onload=function(){
-$(".board").css("display","none");
-$(opening).insertAfter(".board");
+    $(".board").css("display","none");
+    $(opening).insertAfter(".board");
 }
 
 //on button click hide start page and show board/OR restart game after previous one has ended
 $(document).on("click",".button", function(){
-     
+
     if($("#pName").val() !== undefined){ //append name of Player O to box on top left
         playerName = $("#pName").val();
         $("head").append('<style>#player1::before {content: "' + playerName + '"}</style>');
-    };
-    
+    }
+
     if($("#pName2").val() !== undefined){ //append name of Player X to box on top right
         playerName2 = $("#pName2").val();
         $("head").append('<style>#player2::before {content: "' + playerName2 + '"}</style>');
-    };
-    
+    }
+
     $("#start").remove();
     $(".screen-win-one").remove();
     $(".screen-win-two").remove();
     $(".screen-tie").remove();
     $(".board").css("display","block");
     $("#player1").addClass("active");
-    
-    //reset game board
+
+//reset game board
     turn = 0;
     setPlayer1 = [];
     setPlayer2 = [];
     victory = false;
     $("li").removeClass("box-filled-1").css('background-image', 'none');
     $("li").removeClass("box-filled-2").css('background-image', 'none');
-    
-    //start new game
+
+//start new game
     player1();
      });
 
@@ -85,11 +87,10 @@ $(document).on("mouseover",".box", function(){
 
 $(document).on("mouseout",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
-    $(this).css('background-image', 'none');   
+    $(this).css('background-image', 'none');
     }});
-
 }
-    
+
 //Selecting a field to place the "x", check victory conditions and either declare winner, tie or handover to player 1
 $(document).on("click",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
@@ -113,7 +114,7 @@ injectWinner();}
         $(".board").css("display","none");
         injectTie();}
         else {player2()};
-}});  
+}});
 }
 
 //Player Two gameplay function
@@ -128,10 +129,10 @@ $(document).on("mouseover",".box", function(){
 
 $(document).on("mouseout",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
-    $(this).css('background-image', 'none');   
+    $(this).css('background-image', 'none');
     }});
 }
-    
+
 //Selecting a field to place the "x", check victory conditions and either declare winner, tie or handover to player 1
 $(document).on("click",".box", function(){
     if(!($(this).hasClass("box-filled-2"))&&!($(this).hasClass("box-filled-1"))){
@@ -148,10 +149,10 @@ $(document).on("click",".box", function(){
         playerWin = 'screen-win-two';
 var playerNameWin = playerName2 + " Wins!";
 $("head").append('<style>.screen-win-two p:before {content: "' + playerNameWin + '"}</style>');
-        
+
         injectWinner()}else if(turn === 9)
         {
-        $(".board").css("display","none");         
+        $(".board").css("display","none");
         injectTie();}
         else {player1()};
 }});
@@ -159,17 +160,17 @@ $("head").append('<style>.screen-win-two p:before {content: "' + playerNameWin +
 
 //function that checks for victory conditions
 var vc = [["11","12","13"],["21","22","23"],["31","32","33"],["11","21","31"],["12","22","32"],["13","23","33"],["11","22","33"],["31","22","13"]];
-    
+
 function victoryCheck1(){//check if player one wins
 for (var i = 0;i<8;i++){
-var isSuperset = vc[i].every(function (val) { return setPlayer1.indexOf(val) >= 0; });    
-if(isSuperset){victory = isSuperset;}    
+var isSuperset = vc[i].every(function (val) { return setPlayer1.indexOf(val) >= 0; });
+if(isSuperset){victory = isSuperset;}
 }}
 
 function victoryCheck2(){//check if player two wins
 for (var i = 0;i<8;i++){
-var isSuperset = vc[i].every(function (val) { return setPlayer2.indexOf(val) >= 0; });    
-if(isSuperset){victory = isSuperset;}    
+var isSuperset = vc[i].every(function (val) { return setPlayer2.indexOf(val) >= 0; });
+if(isSuperset){victory = isSuperset;}
 }}
-    
+
 }()
