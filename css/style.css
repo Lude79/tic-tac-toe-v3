@@ -212,20 +212,3 @@ input{
         color: #54D17A;
         }
 
-
-
-
-
-li svg {
-    z-index: -1;
-
-
-    
-}
-
-.players p {
-    z-index: 100;
-    position: relative;
-    margin-top: 10px;
-    color: black;
-}
