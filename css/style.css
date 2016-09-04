@@ -215,8 +215,17 @@ input{
 
 
 
-/*
-li #player2 {
+
+li svg {
+    z-index: -1;
+
+
     
-    text-align: center;
-}*/
+}
+
+.players p {
+    z-index: 100;
+    position: relative;
+    margin-top: 10px;
+    color: black;
+}
