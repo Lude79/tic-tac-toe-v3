@@ -1,10 +1,10 @@
+(function(){
+    
 "use strict";
 
-(function(){
-
 //set variables
-var setPlayer1 = []; //array of stones placed by player 1
-var setPlayer2 = []; //array of stones placed by player 2
+//var  = []; //array of stones placed by player 1
+var setPlayer2, setPlayer1 = []; //array of stones placed by player 1 and 2
 var victory = false;
 var playerWin, playerName, playerName2;
 var turn = 0;
@@ -32,13 +32,13 @@ function injectTie(){
 }
 
 //show start page and hide board
-window.onload=function(){
-    $(".board").css("display","none");
+window.onload = function(){
+    $(".board").css("display", "none");
     $(opening).insertAfter(".board");
 }
 
 //on button click hide start page and show board/OR restart game after previous one has ended
-$(document).on("click",".button", function(){
+$(document).on("click", ".button", function(){
 
     if($("#pName").val() !== undefined){ //append name of Player O to box on top left
         playerName = $("#pName").val();
