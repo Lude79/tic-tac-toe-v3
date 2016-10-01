@@ -1,9 +1,10 @@
+/*globals $:false */
+
 (function(){
     
 "use strict";
 
 //set variables
-//var  = []; //array of stones placed by player 1
 var setPlayer2, setPlayer1 = []; //array of stones placed by player 1 and 2
 var victory = false;
 var playerWin, playerName, playerName2;
@@ -35,7 +36,7 @@ function injectTie(){
 window.onload = function(){
     $(".board").css("display", "none");
     $(opening).insertAfter(".board");
-}
+};
 
 //on button click hide start page and show board/OR restart game after previous one has ended
 $(document).on("click", ".button", function(){
@@ -107,7 +108,7 @@ var player1 = function(){
                 $(".board").css("display","none");
                 playerWin = 'screen-win-one';
                 var playerNameWin = playerName + " Wins!";
-                $("head").append('<style>.screen-win-one p:before {content: "' + playerNameWin + '"}</style>')
+                $("head").append('<style>.screen-win-one p:before {content: "' + playerNameWin + '"}</style>');
                 injectWinner();}
             else if(turn === 9) //tie condition
                 {
@@ -115,7 +116,7 @@ var player1 = function(){
                 injectTie();}
             else {player2();}
         }});
-} //close player one gameplay function
+}; //close player one gameplay function
 
 //Player Two gameplay function
 var player2 = function(){
@@ -149,28 +150,30 @@ var player2 = function(){
                 playerWin = 'screen-win-two';
                 var playerNameWin = playerName2 + " Wins!";
                 $("head").append('<style>.screen-win-two p:before {content: "' + playerNameWin + '"}</style>');
-                injectWinner()}
+                injectWinner();}
             else if(turn === 9)
                 {
                 $(".board").css("display","none");
                 injectTie();}
             else {player1();}
         }});
-} //close player two gameplay function
+}; //close player two gameplay function
 
 //function that checks for victory conditions
 var vc = [["11","12","13"],["21","22","23"],["31","32","33"],["11","21","31"],["12","22","32"],["13","23","33"],["11","22","33"],["31","22","13"]];
 
 function victoryCheck1(){//check if player one wins
+    function win1(val){ return setPlayer1.indexOf(val) >= 0; }
     for (var i = 0;i<8;i++){
-        var isSuperset = vc[i].every(function (val) { return setPlayer1.indexOf(val) >= 0; });
+        var isSuperset = vc[i].every(win1);
         if(isSuperset){victory = isSuperset;}
 }}
 
 function victoryCheck2(){//check if player two wins
+    function win2(val) { return setPlayer2.indexOf(val) >= 0; } 
     for (var i = 0;i<8;i++){
-        var isSuperset = vc[i].every(function (val) { return setPlayer2.indexOf(val) >= 0; });
+        var isSuperset = vc[i].every(win2);
         if(isSuperset){victory = isSuperset;}
 }}
 
-})()
+})();
